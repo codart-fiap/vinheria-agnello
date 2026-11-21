@@ -1,0 +1,22 @@
+meta {
+  name: 3 - Criar Pedido
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/pedidos
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "vinhoId": 1,
+    "quantidade": 2
+  }
+}

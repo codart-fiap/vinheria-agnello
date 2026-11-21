@@ -1,0 +1,23 @@
+meta {
+  name: 1 - Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "usuario": "cliente",
+    "senha": "123456"
+  }
+}
+
+script:post-response {
+  // Salva o token automaticamente para ser usado nas próximas requisições
+  bru.setVar("token", res.body.token);
+}

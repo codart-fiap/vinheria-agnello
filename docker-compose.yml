@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  ms-catalogo:
+    build: ./ms-catalogo
+    container_name: ms-catalogo
+    ports:
+      - "3001:3001"
+    networks:
+      - vinheria-net
+
+  ms-pedidos:
+    build: ./ms-pedidos
+    container_name: ms-pedidos
+    ports:
+      - "3000:3000"
+    environment:
+      - CATALOGO_URL=http://ms-catalogo:3001
+    depends_on:
+      - ms-catalogo
+    networks:
+      - vinheria-net
+
+networks:
+  vinheria-net:
+    driver: bridge
